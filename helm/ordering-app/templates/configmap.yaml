@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: config-all
+immutable: false
+data:
+  RABBIT_MQ_BILLING_QUEUE: billing
+  RABBIT_MQ_AUTH_QUEUE: auth

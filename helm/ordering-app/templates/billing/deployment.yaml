@@ -17,10 +17,22 @@ spec:
           image: mguay/ordering-app_billing
           env:
             - name: RABBIT_MQ_BILLING_QUEUE
-              value: billing
+              valueFrom:
+                configMapKeyRef:
+                  key: RABBIT_MQ_BILLING_QUEUE
+                  name: config-all
             - name: RABBIT_MQ_AUTH_QUEUE
-              value: auth
+              valueFrom:
+                configMapKeyRef:
+                  key: RABBIT_MQ_AUTH_QUEUE
+                  name: config-all
             - name: MONGODB_URI
-              value: mongodb://root:password123@ordering-app-mongodb-headless:27017/
+              valueFrom:
+                secretKeyRef:
+                  key: MONGODB_URI
+                  name: secret-config
             - name: RABBIT_MQ_URI
-              value: amqp://user1:password123@ordering-app-rabbitmq:5672
+              valueFrom:
+                secretKeyRef:
+                  key: RABBIT_MQ_URI
+                  name: secret-config
